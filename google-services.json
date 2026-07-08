@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1054444040267",
+    "firebase_url": "https://lazer-play-default-rtdb.firebaseio.com",
+    "project_id": "lazer-play",
+    "storage_bucket": "lazer-play.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054444040267:android:cf0b0aa004cc3eb62e5dce",
+        "android_client_info": {
+          "package_name": "com.lazer.lazerplay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054444040267-mfp8go3ip3tq6n4ujpok63qs586rgj5n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lazer.lazerplay",
+            "certificate_hash": "8f5d86f8bd8a14e5676cfbe122ea7b3f7b5b0ae9"
+          }
+        },
+        {
+          "client_id": "1054444040267-mrfn8ub52lq1r3cmnlcm5df301ja7bvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfHejI-Vm3IMJx0Ln_JSw_JEw8LDJ0vGY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054444040267-mrfn8ub52lq1r3cmnlcm5df301ja7bvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

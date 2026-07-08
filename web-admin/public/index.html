@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lazer Play Admin</title>
+    <style>
+      body { font-family: Arial, sans-serif; margin: 0; background: #0f172a; color: #f8fafc; }
+      .container { max-width: 1000px; margin: 0 auto; padding: 32px; }
+      .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+      .card { background: #111827; padding: 20px; border-radius: 16px; }
+      h1 { margin-top: 0; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Painel Administrativo Lazer Play</h1>
+      <p>Gerenciamento de usuários, artistas, conteúdo e finanças.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Usuários</h3>
+          <p id="users">Carregando...</p>
+        </div>
+        <div class="card">
+          <h3>Artistas</h3>
+          <p id="artists">Carregando...</p>
+        </div>
+        <div class="card">
+          <h3>Reproduções</h3>
+          <p id="streams">Carregando...</p>
+        </div>
+        <div class="card">
+          <h3>Receita</h3>
+          <p id="revenue">Carregando...</p>
+        </div>
+      </div>
+    </div>
+    <script>
+      fetch('/api/dashboard').then(res => res.json()).then(data => {
+        document.getElementById('users').textContent = data.users.toLocaleString();
+        document.getElementById('artists').textContent = data.artists.toLocaleString();
+        document.getElementById('streams').textContent = data.streams.toLocaleString();
+        document.getElementById('revenue').textContent = '$' + data.revenue.toLocaleString();
+      });
+    </script>
+  </body>
+</html>
