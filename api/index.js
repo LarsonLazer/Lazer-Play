@@ -61,6 +61,17 @@ async function handler(req, res) {
     });
   }
 
+  if (req.method === 'GET' && pathname === '/api/dashboard') {
+    const users = readUsers();
+    return sendJson(res, 200, {
+      users: Math.max(users.length, 18),
+      artists: 1240,
+      streams: 985000,
+      revenue: 12840,
+      pending: 12
+    });
+  }
+
   if (req.method === 'POST' && pathname === '/api/auth/register') {
     const body = await parseJsonBody(req);
     const { email, password, name } = body;

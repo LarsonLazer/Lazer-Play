@@ -6,6 +6,14 @@
       "destination": "/api"
     },
     {
+      "source": "/admin",
+      "destination": "/web-admin/public/index.html"
+    },
+    {
+      "source": "/admin/(.*)",
+      "destination": "/web-admin/public/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
