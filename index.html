@@ -50,7 +50,11 @@
         font-weight: 700;
       }
       .message { margin-top: 10px; color: #38bdf8; min-height: 20px; }
-      @media (max-width: 780px) { .row { grid-template-columns: 1fr; } }
+      .dashboard { display: none; }
+      .dashboard.visible { display: block; }
+      .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
+      .stat { padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.05); }
+      @media (max-width: 780px) { .row { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } }
     </style>
   </head>
   <body>
@@ -64,14 +68,26 @@
           <p>Exemplo de login: <strong>demo@lazerplay.com</strong> / <strong>123456</strong></p>
           <div class="pill">Pronto para Vercel</div>
         </div>
-        <div class="card">
-          <h2>Entrar</h2>
-          <form id="login-form">
-            <input id="email" type="email" placeholder="E-mail" required />
-            <input id="password" type="password" placeholder="Senha" required />
-            <button type="submit">Entrar</button>
-          </form>
-          <div id="message" class="message"></div>
+        <div class="card" id="auth-card">
+          <div id="login-view">
+            <h2>Entrar</h2>
+            <form id="login-form">
+              <input id="email" type="email" placeholder="E-mail" required />
+              <input id="password" type="password" placeholder="Senha" required />
+              <button type="submit">Entrar</button>
+            </form>
+            <div id="message" class="message"></div>
+          </div>
+          <div id="dashboard-view" class="dashboard">
+            <h2>Bem-vindo ao painel</h2>
+            <p id="user-name">Olá!</p>
+            <div class="stats">
+              <div class="stat"><strong>Playlists</strong><br />12</div>
+              <div class="stat"><strong>Seguidores</strong><br />3.2k</div>
+              <div class="stat"><strong>Último acesso</strong><br />Hoje</div>
+              <div class="stat"><strong>Status</strong><br />Premium</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -79,6 +95,9 @@
     <script>
       const form = document.getElementById('login-form');
       const message = document.getElementById('message');
+      const loginView = document.getElementById('login-view');
+      const dashboardView = document.getElementById('dashboard-view');
+      const userName = document.getElementById('user-name');
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -92,7 +111,15 @@
             body: JSON.stringify({ email, password })
           });
           const data = await response.json();
-          message.textContent = data.message || data.error || 'Processando...';
+
+          if (response.ok) {
+            loginView.style.display = 'none';
+            dashboardView.classList.add('visible');
+            userName.textContent = `Olá, ${data.user?.name || email}!`;
+            message.textContent = '';
+          } else {
+            message.textContent = data.error || 'Erro ao entrar.';
+          }
         } catch (error) {
           message.textContent = 'Não foi possível conectar à API.';
         }
