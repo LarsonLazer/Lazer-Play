@@ -1,6 +1,21 @@
 const http = require('http');
+const fs = require('fs');
+const path = require('path');
 
-const users = [];
+const dataFile = path.join(__dirname, 'data', 'users.json');
+
+function readUsers() {
+  try {
+    const content = fs.readFileSync(dataFile, 'utf8');
+    return JSON.parse(content);
+  } catch {
+    return [];
+  }
+}
+
+function writeUsers(users) {
+  fs.writeFileSync(dataFile, JSON.stringify(users, null, 2));
+}
 
 function sendJson(res, statusCode, payload) {
   res.writeHead(statusCode, { 'Content-Type': 'application/json' });
@@ -49,6 +64,7 @@ async function handler(req, res) {
   if (req.method === 'POST' && pathname === '/api/auth/register') {
     const body = await parseJsonBody(req);
     const { email, password, name } = body;
+    const users = readUsers();
 
     if (!email || !password) {
       return sendJson(res, 400, { error: 'Email e senha são obrigatórios.' });
@@ -67,6 +83,7 @@ async function handler(req, res) {
     };
 
     users.push(user);
+    writeUsers(users);
     return sendJson(res, 201, {
       message: 'Usuário criado com sucesso.',
       user: { id: user.id, email: user.email, name: user.name },
@@ -77,6 +94,7 @@ async function handler(req, res) {
   if (req.method === 'POST' && pathname === '/api/auth/login') {
     const body = await parseJsonBody(req);
     const { email, password } = body;
+    const users = readUsers();
 
     const user = users.find((item) => item.email === email && item.password === password);
     if (user) {
