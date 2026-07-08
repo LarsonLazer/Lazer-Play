@@ -1,21 +1,9 @@
 const http = require('http');
-const fs = require('fs');
-const path = require('path');
+const { createClient } = require('@supabase/supabase-js');
 
-const dataFile = path.join(__dirname, 'data', 'users.json');
-
-function readUsers() {
-  try {
-    const content = fs.readFileSync(dataFile, 'utf8');
-    return JSON.parse(content);
-  } catch {
-    return [];
-  }
-}
-
-function writeUsers(users) {
-  fs.writeFileSync(dataFile, JSON.stringify(users, null, 2));
-}
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_ANON_KEY;
+const supabase = supabaseUrl && supabaseKey ? createClient(supabaseUrl, supabaseKey) : null;
 
 function sendJson(res, statusCode, payload) {
   res.writeHead(statusCode, { 'Content-Type': 'application/json' });
@@ -43,6 +31,32 @@ async function parseJsonBody(req) {
   }
 }
 
+async function readUsers() {
+  if (!supabase) {
+    return [];
+  }
+
+  const { data, error } = await supabase.from('users').select('*').order('id', { ascending: true });
+  if (error) {
+    return [];
+  }
+
+  return data || [];
+}
+
+async function writeUser(user) {
+  if (!supabase) {
+    return user;
+  }
+
+  const { error } = await supabase.from('users').insert(user);
+  if (error) {
+    return null;
+  }
+
+  return user;
+}
+
 async function handler(req, res) {
   const url = new URL(req.url || '/', `http://${req.headers.host || 'localhost'}`);
   const pathname = url.pathname;
@@ -62,7 +76,7 @@ async function handler(req, res) {
   }
 
   if (req.method === 'GET' && pathname === '/api/dashboard') {
-    const users = readUsers();
+    const users = await readUsers();
     return sendJson(res, 200, {
       users: Math.max(users.length, 18),
       artists: 1240,
@@ -75,7 +89,7 @@ async function handler(req, res) {
   if (req.method === 'POST' && pathname === '/api/auth/register') {
     const body = await parseJsonBody(req);
     const { email, password, name } = body;
-    const users = readUsers();
+    const users = await readUsers();
 
     if (!email || !password) {
       return sendJson(res, 400, { error: 'Email e senha são obrigatórios.' });
@@ -93,8 +107,11 @@ async function handler(req, res) {
       password
     };
 
-    users.push(user);
-    writeUsers(users);
+    const saved = await writeUser(user);
+    if (!saved) {
+      return sendJson(res, 500, { error: 'Não foi possível salvar o usuário no Supabase.' });
+    }
+
     return sendJson(res, 201, {
       message: 'Usuário criado com sucesso.',
       user: { id: user.id, email: user.email, name: user.name },
@@ -105,7 +122,7 @@ async function handler(req, res) {
   if (req.method === 'POST' && pathname === '/api/auth/login') {
     const body = await parseJsonBody(req);
     const { email, password } = body;
-    const users = readUsers();
+    const users = await readUsers();
 
     const user = users.find((item) => item.email === email && item.password === password);
     if (user) {
