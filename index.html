@@ -56,19 +56,19 @@
     <aside class="hidden lg:flex flex-col h-screen fixed left-0 w-[280px] border-r border-white/10 bg-surface-container/90 backdrop-blur-xl z-50">
       <div class="px-8 py-8">
         <h1 class="font-display text-2xl font-extrabold text-primary tracking-tight">Lazer Play</h1>
-        <p class="text-sm uppercase tracking-[0.3em] text-on-surface-variant mt-2">Premium Audio</p>
+        <p class="text-sm uppercase tracking-[0.3em] text-on-surface-variant mt-2">Áudio Premium</p>
       </div>
       <nav class="flex-1 px-4 space-y-2">
-        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-primary bg-primary/10 font-semibold" href="#"><span class="material-symbols-outlined">home</span><span>Discovery</span></a>
-        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">library_music</span><span>Library</span></a>
-        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">favorite</span><span>Liked Songs</span></a>
-        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">mic_external_on</span><span>Artist Hub</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-primary bg-primary/10 font-semibold" href="#"><span class="material-symbols-outlined">home</span><span>Descobrir</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">library_music</span><span>Biblioteca</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">favorite</span><span>Favoritas</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="/admin"><span class="material-symbols-outlined">mic_external_on</span><span>Admin</span></a>
       </nav>
       <div class="px-4 pb-8">
         <div class="glass-panel rounded-2xl p-4">
           <p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant">Upgrade</p>
-          <p class="mt-2 font-semibold">Go Pro and unlock lossless audio.</p>
-          <button class="mt-4 w-full rounded-full bg-primary px-4 py-3 font-semibold text-on-primary">Upgrade</button>
+          <p class="mt-2 font-semibold">Vá Pro e desbloqueie áudio sem perdas.</p>
+          <button class="mt-4 w-full rounded-full bg-primary px-4 py-3 font-semibold text-on-primary">Assinar</button>
         </div>
       </div>
     </aside>
@@ -77,48 +77,48 @@
       <section class="px-5 lg:px-10 pt-8 lg:pt-10 max-w-7xl mx-auto">
         <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] items-center">
           <div>
-            <div class="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary">Featured release • Cyberpunk Serenade</div>
-            <h2 class="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">Discover the next wave of sound.</h2>
-            <p class="mt-4 max-w-2xl text-lg text-on-surface-variant">A futuristic streaming experience with premium audio, sleek discovery, and artist-first tools.</p>
+            <div class="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary">Lançamento em destaque • Cyberpunk Serenade</div>
+            <h2 class="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">Descubra a próxima onda do som.</h2>
+            <p class="mt-4 max-w-2xl text-lg text-on-surface-variant">Uma experiência de streaming moderna, com áudio premium, descoberta elegante e ferramentas pensadas para artistas.</p>
             <div class="mt-8 flex flex-wrap gap-4">
-              <button class="rounded-full bg-primary px-6 py-3 font-semibold text-on-primary neon-glow">Play now</button>
-              <a href="/admin" class="rounded-full border border-secondary/40 px-6 py-3 font-semibold text-secondary hover:bg-secondary/10 transition">Open admin</a>
+              <button class="rounded-full bg-primary px-6 py-3 font-semibold text-on-primary neon-glow">Ouvir agora</button>
+              <a href="/admin" class="rounded-full border border-secondary/40 px-6 py-3 font-semibold text-secondary hover:bg-secondary/10 transition">Abrir admin</a>
             </div>
             <div class="mt-8 flex flex-wrap gap-3 text-sm text-on-surface-variant">
-              <span class="rounded-full border border-white/10 px-3 py-1">Demo login: demo@lazerplay.com / 123456</span>
-              <span class="rounded-full border border-white/10 px-3 py-1">API ready for Vercel</span>
+              <span class="rounded-full border border-white/10 px-3 py-1">Demo: demo@lazerplay.com / 123456</span>
+              <span class="rounded-full border border-white/10 px-3 py-1">API pronta para Vercel</span>
             </div>
           </div>
 
           <div id="auth-card" class="glass-panel rounded-[28px] p-6">
             <div id="login-view">
-              <p class="text-sm uppercase tracking-[0.3em] text-primary">Enter Lazer Play</p>
-              <h3 class="mt-3 text-2xl font-semibold">Sign in to your universe</h3>
+              <p class="text-sm uppercase tracking-[0.3em] text-primary">Entrar no Lazer Play</p>
+              <h3 class="mt-3 text-2xl font-semibold">Acesse sua conta</h3>
               <form id="login-form" class="mt-5 space-y-3">
-                <input id="email" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="email" placeholder="Email" required />
-                <input id="password" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="password" placeholder="Password" required />
-                <button class="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-semibold text-on-primary" type="submit">Login</button>
+                <input id="email" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="email" placeholder="E-mail" required />
+                <input id="password" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="password" placeholder="Senha" required />
+                <button class="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-semibold text-on-primary" type="submit">Entrar</button>
               </form>
               <div id="message" class="mt-4 min-h-6 text-sm text-secondary"></div>
             </div>
             <div id="dashboard-view" class="hidden">
-              <p class="text-sm uppercase tracking-[0.3em] text-primary">Welcome back</p>
-              <h3 id="welcome-name" class="mt-2 text-2xl font-semibold">Hello!</h3>
+              <p class="text-sm uppercase tracking-[0.3em] text-primary">Bem-vindo de volta</p>
+              <h3 id="welcome-name" class="mt-2 text-2xl font-semibold">Olá!</h3>
               <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
                 <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
                   <p class="text-on-surface-variant">Playlists</p>
                   <p class="mt-1 text-xl font-semibold text-primary">12</p>
                 </div>
                 <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <p class="text-on-surface-variant">Followers</p>
+                  <p class="text-on-surface-variant">Seguidores</p>
                   <p class="mt-1 text-xl font-semibold text-secondary">3.2k</p>
                 </div>
                 <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <p class="text-on-surface-variant">Listening</p>
+                  <p class="text-on-surface-variant">Ouvindo</p>
                   <p class="mt-1 text-xl font-semibold text-tertiary">Today</p>
                 </div>
                 <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
-                  <p class="text-on-surface-variant">Plan</p>
+                  <p class="text-on-surface-variant">Plano</p>
                   <p class="mt-1 text-xl font-semibold text-primary">Premium</p>
                 </div>
               </div>
@@ -129,8 +129,8 @@
 
       <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10">
         <div class="flex items-end justify-between">
-          <h3 class="font-display text-2xl font-semibold">New Releases</h3>
-          <a class="text-sm text-primary hover:underline" href="#">View all</a>
+          <h3 class="font-display text-2xl font-semibold">Lançamentos</h3>
+          <a class="text-sm text-primary hover:underline" href="#">Ver tudo</a>
         </div>
         <div class="mt-5 flex gap-4 overflow-x-auto pb-4 no-scrollbar">
           <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
@@ -159,8 +159,8 @@
       <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
         <div class="glass-panel rounded-[28px] p-6">
           <div class="flex items-end justify-between">
-            <h3 class="font-display text-2xl font-semibold">Popular Tracks</h3>
-            <a class="text-sm text-primary hover:underline" href="#">Explore</a>
+            <h3 class="font-display text-2xl font-semibold">Faixas em alta</h3>
+            <a class="text-sm text-primary hover:underline" href="#">Explorar</a>
           </div>
           <div class="mt-6 space-y-3">
             <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
@@ -187,16 +187,16 @@
           </div>
         </div>
         <div class="glass-panel rounded-[28px] p-6">
-          <p class="text-sm uppercase tracking-[0.3em] text-primary">Premium membership</p>
-          <h3 class="mt-3 font-display text-2xl font-semibold">Enjoy no ads, lossless audio and early access.</h3>
+          <p class="text-sm uppercase tracking-[0.3em] text-primary">Assinatura premium</p>
+          <h3 class="mt-3 font-display text-2xl font-semibold">Sem anúncios, áudio sem perdas e acesso antecipado.</h3>
           <div class="mt-6 space-y-3">
             <div class="rounded-2xl border border-primary/30 bg-primary/10 p-4">
-              <p class="font-semibold">Individual • $9.99/mo</p>
-              <p class="mt-1 text-sm text-on-surface-variant">No interruptions and unlimited downloads.</p>
+              <p class="font-semibold">Individual • R$ 39,90/mês</p>
+              <p class="mt-1 text-sm text-on-surface-variant">Sem interrupções e downloads ilimitados.</p>
             </div>
             <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-              <p class="font-semibold">Family Hub • $15.99/mo</p>
-              <p class="mt-1 text-sm text-on-surface-variant">Shared playlists and parental controls.</p>
+              <p class="font-semibold">Family Hub • R$ 59,90/mês</p>
+              <p class="mt-1 text-sm text-on-surface-variant">Playlists compartilhadas e controles parentais.</p>
             </div>
           </div>
         </div>
@@ -204,7 +204,7 @@
 
       <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <div class="glass-panel rounded-[28px] p-6">
-          <h3 class="font-display text-2xl font-semibold">Trending Artists</h3>
+          <h3 class="font-display text-2xl font-semibold">Artistas em alta</h3>
           <div class="mt-6 flex gap-4 overflow-x-auto no-scrollbar">
             <div class="w-28 text-center">
               <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-br from-primary to-secondary"></div>
@@ -225,7 +225,7 @@
         </div>
         <div class="glass-panel rounded-[28px] p-6">
           <div class="flex items-center justify-between">
-            <h3 class="font-display text-2xl font-semibold">Now playing</h3>
+            <h3 class="font-display text-2xl font-semibold">Tocando agora</h3>
             <span class="text-sm text-secondary">Live</span>
           </div>
           <div class="mt-6 rounded-[24px] border border-white/10 bg-gradient-to-br from-primary/20 to-secondary/20 p-5">
@@ -249,7 +249,7 @@
     </main>
 
     <div class="fixed bottom-0 left-0 w-full z-50 px-4 pb-4 lg:pl-[304px]">
-      <div class="mx-auto flex max-w-5xl items-center justify-between rounded-[24px] border border-white/10 bg-surface-container/90 px-4 py-3 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-5xl flex-col gap-3 rounded-[24px] border border-white/10 bg-surface-container/90 px-4 py-3 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
         <div class="flex items-center gap-3">
           <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-secondary"></div>
           <div>
@@ -266,9 +266,9 @@
     </div>
 
     <nav class="fixed bottom-0 left-0 flex w-full items-center justify-between border-t border-white/10 bg-surface-container/90 px-6 py-3 text-sm text-on-surface-variant backdrop-blur-xl lg:hidden">
-      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">home</span><span>Home</span></a>
-      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">search</span><span>Search</span></a>
-      <a class="flex flex-col items-center text-primary" href="#"><span class="material-symbols-outlined">subscriptions</span><span>Library</span></a>
+      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">home</span><span>Início</span></a>
+      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">search</span><span>Buscar</span></a>
+      <a class="flex flex-col items-center text-primary" href="#"><span class="material-symbols-outlined">subscriptions</span><span>Biblioteca</span></a>
       <a class="flex flex-col items-center" href="/admin"><span class="material-symbols-outlined">analytics</span><span>Admin</span></a>
     </nav>
 
