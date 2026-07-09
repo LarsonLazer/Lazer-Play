@@ -1,151 +1,175 @@
 <!doctype html>
-<html lang="pt-BR">
+<html class="dark" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Lazer Play Admin</title>
+    <title>Lazer Play | Artist Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: '#0b1326',
+              surface: '#0b1326',
+              primary: '#d0bcff',
+              secondary: '#4cd7f6',
+              tertiary: '#ffafd3',
+              'on-surface': '#dae2fd',
+              'on-surface-variant': '#cbc3d7',
+              'on-primary': '#3c0091',
+              'surface-container': '#171f33',
+              'surface-container-high': '#222a3d'
+            },
+            fontFamily: {
+              body: ['Inter'],
+              display: ['Montserrat']
+            }
+          }
+        }
+      };
+    </script>
     <style>
       :root { color-scheme: dark; }
-      * { box-sizing: border-box; }
       body {
-        margin: 0;
+        background: linear-gradient(135deg, #0b1326 0%, #111827 100%);
+        color: #dae2fd;
         font-family: Inter, Arial, sans-serif;
-        background: linear-gradient(135deg, #07111f 0%, #111827 100%);
-        color: #f8fafc;
       }
-      .container {
-        max-width: 1180px;
-        margin: 0 auto;
-        padding: 32px 24px 64px;
-      }
-      .hero {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        padding: 24px;
-        border-radius: 24px;
-        background: rgba(15, 23, 42, 0.92);
-        border: 1px solid rgba(255,255,255,0.08);
-        box-shadow: 0 18px 40px rgba(0,0,0,0.25);
-      }
-      .hero h1 { margin: 0 0 8px; font-size: 28px; }
-      .hero p { margin: 0; color: #cbd5e1; }
-      .badge {
-        background: linear-gradient(135deg, #2563eb, #38bdf8);
-        color: white;
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-weight: 700;
-      }
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 16px;
-        margin-top: 20px;
-      }
-      .card {
-        background: rgba(15, 23, 42, 0.9);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 20px;
-        padding: 20px;
-        box-shadow: 0 12px 24px rgba(0,0,0,0.18);
-      }
-      .card h3 { margin: 0 0 8px; font-size: 16px; color: #94a3b8; }
-      .card .value { font-size: 28px; font-weight: 700; }
-      .card .sub { color: #38bdf8; font-size: 13px; margin-top: 8px; }
-      .panel { margin-top: 20px; display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 16px; }
-      .list { padding: 0; margin: 0; list-style: none; }
-      .list li { padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.08); }
-      .actions button {
-        display: block;
-        width: 100%;
-        margin-top: 10px;
-        padding: 12px;
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #2563eb, #4f46e5);
-        color: white;
-        font-weight: 600;
-        cursor: pointer;
-      }
-      @media (max-width: 800px) {
-        .panel { grid-template-columns: 1fr; }
-      }
+      .glass-panel { background: rgba(23,31,51,.72); backdrop-filter: blur(18px); border: 1px solid rgba(255,255,255,.08); }
     </style>
   </head>
   <body>
-    <div class="container">
-      <div class="hero">
+    <nav class="fixed top-0 left-0 right-0 z-40 flex items-center justify-between border-b border-white/10 bg-surface/80 px-5 py-4 backdrop-blur-xl lg:px-8">
+      <div class="flex items-center gap-3">
+        <div class="h-9 w-9 rounded-full bg-gradient-to-br from-primary to-secondary"></div>
         <div>
-          <h1>Painel Administrativo Lazer Play</h1>
-          <p>Gerencie usuários, artistas, conteúdos, anúncios e finanças em um só lugar.</p>
-        </div>
-        <div style="display:flex;gap:10px;flex-direction:column;align-items:flex-end;">
-          <div class="badge">Em produção</div>
-          <a href="/" style="color:#93c5fd; text-decoration:none;">Voltar para o app</a>
+          <p class="font-display text-lg font-semibold">Lazer Play</p>
+          <p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant">Artist Hub</p>
         </div>
       </div>
+      <div class="hidden items-center gap-3 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm lg:flex">
+        <span class="material-symbols-outlined text-on-surface-variant">search</span>
+        <span>Search artists, tracks...</span>
+      </div>
+      <a href="/" class="rounded-full border border-primary/30 px-4 py-2 text-sm text-primary">Back to app</a>
+    </nav>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Usuários</h3>
-          <div class="value" id="users">--</div>
-          <div class="sub">Novos inscritos hoje</div>
+    <div class="flex min-h-screen pt-20">
+      <aside class="hidden w-[260px] shrink-0 border-r border-white/10 bg-surface-container/70 p-6 lg:block">
+        <div class="rounded-[24px] border border-primary/20 bg-primary/10 p-4">
+          <p class="text-sm uppercase tracking-[0.3em] text-primary">Creator zone</p>
+          <h2 class="mt-2 text-xl font-semibold">Digital Ghost</h2>
+          <p class="mt-2 text-sm text-on-surface-variant">Your audience grew by 12% this week.</p>
         </div>
-        <div class="card">
-          <h3>Artistas</h3>
-          <div class="value" id="artists">--</div>
-          <div class="sub">Perfis ativos</div>
-        </div>
-        <div class="card">
-          <h3>Reproduções</h3>
-          <div class="value" id="streams">--</div>
-          <div class="sub">Nesta semana</div>
-        </div>
-        <div class="card">
-          <h3>Receita</h3>
-          <div class="value" id="revenue">--</div>
-          <div class="sub">Em receita mensal</div>
-        </div>
-      </div>
+        <nav class="mt-6 space-y-2">
+          <a class="flex items-center gap-3 rounded-2xl px-3 py-3 text-primary bg-primary/10" href="#"><span class="material-symbols-outlined">home</span><span>Home</span></a>
+          <a class="flex items-center gap-3 rounded-2xl px-3 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary" href="#"><span class="material-symbols-outlined">analytics</span><span>Analytics</span></a>
+          <a class="flex items-center gap-3 rounded-2xl px-3 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary" href="#"><span class="material-symbols-outlined">upload</span><span>Upload</span></a>
+          <a class="flex items-center gap-3 rounded-2xl px-3 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary" href="#"><span class="material-symbols-outlined">payments</span><span>Payments</span></a>
+        </nav>
+      </aside>
 
-      <div class="panel">
-        <div class="card">
-          <h3>Resumo do dia</h3>
-          <ul class="list">
-            <li>12 novos uploads aguardando aprovação</li>
-            <li>4 denúncias revisadas pela moderação</li>
-            <li>3 campanhas de anúncios em andamento</li>
-          </ul>
-        </div>
-        <div class="card actions">
-          <h3>Ações rápidas</h3>
-          <button>Aprovar lançamentos</button>
-          <button>Enviar notificações</button>
-          <button>Gerenciar anúncios</button>
-        </div>
-      </div>
+      <main class="flex-1 p-5 lg:p-8">
+        <section class="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
+          <div class="glass-panel rounded-[28px] p-6">
+            <div class="flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <p id="admin-overview-label" class="text-sm uppercase tracking-[0.3em] text-primary">Visão geral</p>
+                <h1 id="admin-title" class="mt-2 font-display text-3xl font-semibold">Carregando...</h1>
+              </div>
+              <button class="rounded-full bg-primary px-4 py-2 font-semibold text-on-primary">Enviar lançamento</button>
+            </div>
+            <p id="admin-subtitle" class="mt-3 text-sm text-on-surface-variant">Carregando...</p>
+            <div class="mt-6 grid gap-4 md:grid-cols-3">
+              <div class="rounded-[20px] border border-white/10 bg-white/5 p-4">
+                <p class="text-sm text-on-surface-variant">Streams</p>
+                <p id="streams" class="mt-2 text-2xl font-semibold text-primary">--</p>
+              </div>
+              <div class="rounded-[20px] border border-white/10 bg-white/5 p-4">
+                <p class="text-sm text-on-surface-variant">Ouvintes</p>
+                <p id="listeners" class="mt-2 text-2xl font-semibold text-secondary">--</p>
+              </div>
+              <div class="rounded-[20px] border border-white/10 bg-white/5 p-4">
+                <p class="text-sm text-on-surface-variant">Receita</p>
+                <p id="revenue" class="mt-2 text-2xl font-semibold text-tertiary">--</p>
+              </div>
+            </div>
+          </div>
+          <div class="glass-panel rounded-[28px] p-6">
+            <p class="text-sm uppercase tracking-[0.3em] text-primary">Ações rápidas</p>
+            <div id="admin-actions" class="mt-4 space-y-3"></div>
+          </div>
+        </section>
+
+        <section class="mt-6 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="glass-panel rounded-[28px] p-6">
+            <div class="flex items-center justify-between">
+              <h2 class="font-display text-2xl font-semibold">Faixas ao vivo</h2>
+              <a class="text-sm text-primary" href="#">Ver catálogo</a>
+            </div>
+            <div class="mt-4 overflow-hidden rounded-[22px] border border-white/10">
+              <table class="min-w-full text-left text-sm">
+                <thead class="bg-white/5 text-on-surface-variant">
+                  <tr>
+                    <th class="px-4 py-3">Faixa</th>
+                    <th class="px-4 py-3">Streams</th>
+                    <th class="px-4 py-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-tracks"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="glass-panel rounded-[28px] p-6">
+            <h2 class="font-display text-2xl font-semibold">Pagamentos futuros</h2>
+            <div id="admin-payouts" class="mt-4 space-y-3"></div>
+          </div>
+        </section>
+      </main>
     </div>
 
     <script>
       async function loadDashboard() {
         try {
-          const response = await fetch('/api/dashboard');
-          if (!response.ok) throw new Error('offline');
-          const data = await response.json();
-          document.getElementById('users').textContent = data.users?.toLocaleString() || '--';
-          document.getElementById('artists').textContent = data.artists?.toLocaleString() || '--';
-          document.getElementById('streams').textContent = data.streams?.toLocaleString() || '--';
-          document.getElementById('revenue').textContent = '$' + (data.revenue?.toLocaleString() || '--');
+          const [contentResponse, dashboardResponse] = await Promise.all([
+            fetch('/api/content?scope=admin'),
+            fetch('/api/dashboard')
+          ]);
+          const content = await contentResponse.json();
+          const data = await dashboardResponse.json();
+          document.getElementById('admin-title').textContent = content.admin?.title || 'Painel administrativo';
+          document.getElementById('admin-subtitle').textContent = content.admin?.subtitle || 'Gerencie sua operação';
+          document.getElementById('streams').textContent = (data.streams || 0).toLocaleString();
+          document.getElementById('listeners').textContent = (data.users || 0).toLocaleString();
+          document.getElementById('revenue').textContent = 'R$ ' + (data.revenue || 0).toLocaleString();
+          document.getElementById('admin-actions').innerHTML = (content.admin?.actions || []).map((item) => `
+            <button class="w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-left">${item}</button>
+          `).join('');
+          document.getElementById('admin-tracks').innerHTML = (content.admin?.tracks || []).map((item) => `
+            <tr class="border-t border-white/10">
+              <td class="px-4 py-3">${item.name}</td>
+              <td class="px-4 py-3">${item.streams}</td>
+              <td class="px-4 py-3 text-secondary">${item.status}</td>
+            </tr>
+          `).join('');
+          document.getElementById('admin-payouts').innerHTML = (content.admin?.payouts || []).map((item) => `
+            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <span>${item.label}</span>
+              <span class="text-primary">${item.value}</span>
+            </div>
+          `).join('');
         } catch (error) {
-          document.getElementById('users').textContent = '18.2k';
-          document.getElementById('artists').textContent = '1.2k';
+          document.getElementById('admin-title').textContent = 'Painel administrativo';
+          document.getElementById('admin-subtitle').textContent = 'Gerencie usuários, artistas e finanças';
           document.getElementById('streams').textContent = '985k';
-          document.getElementById('revenue').textContent = '$12.8k';
+          document.getElementById('listeners').textContent = '18,2k';
+          document.getElementById('revenue').textContent = 'R$ 12,8k';
         }
       }
-
       loadDashboard();
     </script>
   </body>

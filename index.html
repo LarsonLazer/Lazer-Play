@@ -1,103 +1,351 @@
 <!doctype html>
-<html lang="pt-BR">
+<html class="dark" lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Lazer Play</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              background: '#0b1326',
+              surface: '#0b1326',
+              primary: '#d0bcff',
+              secondary: '#4cd7f6',
+              tertiary: '#ffafd3',
+              'on-surface': '#dae2fd',
+              'on-surface-variant': '#cbc3d7',
+              'on-primary': '#3c0091',
+              'surface-container': '#171f33',
+              'surface-container-high': '#222a3d',
+              'surface-variant': '#2d3449'
+            },
+            fontFamily: {
+              body: ['Inter'],
+              display: ['Montserrat']
+            }
+          }
+        }
+      };
+    </script>
     <style>
       :root { color-scheme: dark; }
       body {
-        margin: 0;
+        background: linear-gradient(135deg, #0b1326 0%, #121a2f 100%);
+        color: #dae2fd;
         font-family: Inter, Arial, sans-serif;
-        background: linear-gradient(135deg, #07111f 0%, #111827 100%);
-        color: #f8fafc;
       }
-      .container {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 48px 24px;
-      }
-      .card {
-        background: rgba(15, 23, 42, 0.92);
+      .glass-panel {
+        background: rgba(23, 31, 51, 0.72);
+        backdrop-filter: blur(18px);
         border: 1px solid rgba(255,255,255,0.08);
-        padding: 32px;
-        border-radius: 24px;
-        box-shadow: 0 18px 40px rgba(0,0,0,0.25);
       }
-      .row { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; }
-      .card h1 { margin-top: 0; font-size: 32px; }
-      .card p { color: #cbd5e1; line-height: 1.6; }
-      a { color: #93c5fd; }
-      .pill {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 10px 14px;
-        background: linear-gradient(135deg, #2563eb, #38bdf8);
-        border-radius: 999px;
-        font-weight: 700;
+      .neon-glow:hover {
+        box-shadow: 0 0 24px rgba(208, 188, 255, 0.2);
       }
-      form { display: grid; gap: 12px; margin-top: 16px; }
-      input, button {
-        padding: 12px 14px;
-        border-radius: 12px;
-        border: 1px solid rgba(255,255,255,0.12);
-        font-size: 15px;
-      }
-      button {
-        background: linear-gradient(135deg, #2563eb, #4f46e5);
-        color: white;
-        cursor: pointer;
-        font-weight: 700;
-      }
-      .message { margin-top: 10px; color: #38bdf8; min-height: 20px; }
-      .dashboard { display: none; }
-      .dashboard.visible { display: block; }
-      .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 16px; }
-      .stat { padding: 12px; border-radius: 12px; background: rgba(255,255,255,0.05); }
-      @media (max-width: 780px) { .row { grid-template-columns: 1fr; } .stats { grid-template-columns: 1fr; } }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
   </head>
-  <body>
-    <div class="container">
-      <div class="row">
-        <div class="card">
-          <h1>Lazer Play</h1>
-          <p>Plataforma moderna de streaming de música, vídeos, podcasts e artistas independentes.</p>
-          <p>API disponível em <a href="/api/health">/api/health</a></p>
-          <p>Painel administrativo em <a href="/admin">/admin</a></p>
-          <p>Exemplo de login: <strong>demo@lazerplay.com</strong> / <strong>123456</strong></p>
-          <div class="pill">Pronto para Vercel</div>
+  <body class="overflow-x-hidden">
+    <aside class="hidden lg:flex flex-col h-screen fixed left-0 w-[280px] border-r border-white/10 bg-surface-container/90 backdrop-blur-xl z-50">
+      <div class="px-8 py-8">
+        <h1 class="font-display text-2xl font-extrabold text-primary tracking-tight">Lazer Play</h1>
+        <p class="text-sm uppercase tracking-[0.3em] text-on-surface-variant mt-2">Premium Audio</p>
+      </div>
+      <nav class="flex-1 px-4 space-y-2">
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-primary bg-primary/10 font-semibold" href="#"><span class="material-symbols-outlined">home</span><span>Discovery</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">library_music</span><span>Library</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">favorite</span><span>Liked Songs</span></a>
+        <a class="flex items-center gap-3 rounded-2xl px-4 py-3 text-on-surface-variant hover:bg-primary/10 hover:text-primary transition" href="#"><span class="material-symbols-outlined">mic_external_on</span><span>Artist Hub</span></a>
+      </nav>
+      <div class="px-4 pb-8">
+        <div class="glass-panel rounded-2xl p-4">
+          <p class="text-xs uppercase tracking-[0.3em] text-on-surface-variant">Upgrade</p>
+          <p class="mt-2 font-semibold">Go Pro and unlock lossless audio.</p>
+          <button class="mt-4 w-full rounded-full bg-primary px-4 py-3 font-semibold text-on-primary">Upgrade</button>
         </div>
-        <div class="card" id="auth-card">
-          <div id="login-view">
-            <h2>Entrar</h2>
-            <form id="login-form">
-              <input id="email" type="email" placeholder="E-mail" required />
-              <input id="password" type="password" placeholder="Senha" required />
-              <button type="submit">Entrar</button>
-            </form>
-            <div id="message" class="message"></div>
+      </div>
+    </aside>
+
+    <main class="lg:ml-[280px] min-h-screen pb-32">
+      <section class="px-5 lg:px-10 pt-8 lg:pt-10 max-w-7xl mx-auto">
+        <div class="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] items-center">
+          <div>
+            <div class="inline-flex rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-sm text-primary">Featured release • Cyberpunk Serenade</div>
+            <h2 class="mt-5 font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">Discover the next wave of sound.</h2>
+            <p class="mt-4 max-w-2xl text-lg text-on-surface-variant">A futuristic streaming experience with premium audio, sleek discovery, and artist-first tools.</p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <button class="rounded-full bg-primary px-6 py-3 font-semibold text-on-primary neon-glow">Play now</button>
+              <a href="/admin" class="rounded-full border border-secondary/40 px-6 py-3 font-semibold text-secondary hover:bg-secondary/10 transition">Open admin</a>
+            </div>
+            <div class="mt-8 flex flex-wrap gap-3 text-sm text-on-surface-variant">
+              <span class="rounded-full border border-white/10 px-3 py-1">Demo login: demo@lazerplay.com / 123456</span>
+              <span class="rounded-full border border-white/10 px-3 py-1">API ready for Vercel</span>
+            </div>
           </div>
-          <div id="dashboard-view" class="dashboard">
-            <h2>Bem-vindo ao painel</h2>
-            <p id="user-name">Olá!</p>
-            <div class="stats">
-              <div class="stat"><strong>Playlists</strong><br />12</div>
-              <div class="stat"><strong>Seguidores</strong><br />3.2k</div>
-              <div class="stat"><strong>Último acesso</strong><br />Hoje</div>
-              <div class="stat"><strong>Status</strong><br />Premium</div>
+
+          <div id="auth-card" class="glass-panel rounded-[28px] p-6">
+            <div id="login-view">
+              <p class="text-sm uppercase tracking-[0.3em] text-primary">Enter Lazer Play</p>
+              <h3 class="mt-3 text-2xl font-semibold">Sign in to your universe</h3>
+              <form id="login-form" class="mt-5 space-y-3">
+                <input id="email" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="email" placeholder="Email" required />
+                <input id="password" class="w-full rounded-2xl border border-white/10 bg-surface-container-low/40 px-4 py-3 outline-none focus:border-primary" type="password" placeholder="Password" required />
+                <button class="w-full rounded-2xl bg-gradient-to-r from-primary to-secondary px-4 py-3 font-semibold text-on-primary" type="submit">Login</button>
+              </form>
+              <div id="message" class="mt-4 min-h-6 text-sm text-secondary"></div>
+            </div>
+            <div id="dashboard-view" class="hidden">
+              <p class="text-sm uppercase tracking-[0.3em] text-primary">Welcome back</p>
+              <h3 id="welcome-name" class="mt-2 text-2xl font-semibold">Hello!</h3>
+              <div class="mt-5 grid grid-cols-2 gap-3 text-sm">
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-on-surface-variant">Playlists</p>
+                  <p class="mt-1 text-xl font-semibold text-primary">12</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-on-surface-variant">Followers</p>
+                  <p class="mt-1 text-xl font-semibold text-secondary">3.2k</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-on-surface-variant">Listening</p>
+                  <p class="mt-1 text-xl font-semibold text-tertiary">Today</p>
+                </div>
+                <div class="rounded-2xl border border-white/10 bg-white/5 p-3">
+                  <p class="text-on-surface-variant">Plan</p>
+                  <p class="mt-1 text-xl font-semibold text-primary">Premium</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </section>
+
+      <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10">
+        <div class="flex items-end justify-between">
+          <h3 class="font-display text-2xl font-semibold">New Releases</h3>
+          <a class="text-sm text-primary hover:underline" href="#">View all</a>
+        </div>
+        <div class="mt-5 flex gap-4 overflow-x-auto pb-4 no-scrollbar">
+          <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/30 to-secondary/20"></div>
+            <h4 class="mt-3 font-semibold">Neon Nights</h4>
+            <p class="text-sm text-on-surface-variant">Synthwave Pulse</p>
+          </article>
+          <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-secondary/30 to-primary/20"></div>
+            <h4 class="mt-3 font-semibold">Glitch Heart</h4>
+            <p class="text-sm text-on-surface-variant">Electric Echo</p>
+          </article>
+          <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-tertiary/30 to-secondary/20"></div>
+            <h4 class="mt-3 font-semibold">Static Sky</h4>
+            <p class="text-sm text-on-surface-variant">Vapor Clouds</p>
+          </article>
+          <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
+            <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/20 to-tertiary/20"></div>
+            <h4 class="mt-3 font-semibold">Laser Focus</h4>
+            <p class="text-sm text-on-surface-variant">The Prism</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="glass-panel rounded-[28px] p-6">
+          <div class="flex items-end justify-between">
+            <h3 class="font-display text-2xl font-semibold">Popular Tracks</h3>
+            <a class="text-sm text-primary hover:underline" href="#">Explore</a>
+          </div>
+          <div class="mt-6 space-y-3">
+            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <div>
+                <p class="font-semibold">Gravity Wave</p>
+                <p class="text-sm text-on-surface-variant">Orbital Mind</p>
+              </div>
+              <span class="text-primary">#1 Trending</span>
+            </div>
+            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <div>
+                <p class="font-semibold">After Dark</p>
+                <p class="text-sm text-on-surface-variant">Urban Nocturne</p>
+              </div>
+              <span class="text-secondary">New</span>
+            </div>
+            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <div>
+                <p class="font-semibold">Velocity</p>
+                <p class="text-sm text-on-surface-variant">Mach 5</p>
+              </div>
+              <span class="text-tertiary">Hot</span>
+            </div>
+          </div>
+        </div>
+        <div class="glass-panel rounded-[28px] p-6">
+          <p class="text-sm uppercase tracking-[0.3em] text-primary">Premium membership</p>
+          <h3 class="mt-3 font-display text-2xl font-semibold">Enjoy no ads, lossless audio and early access.</h3>
+          <div class="mt-6 space-y-3">
+            <div class="rounded-2xl border border-primary/30 bg-primary/10 p-4">
+              <p class="font-semibold">Individual • $9.99/mo</p>
+              <p class="mt-1 text-sm text-on-surface-variant">No interruptions and unlimited downloads.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+              <p class="font-semibold">Family Hub • $15.99/mo</p>
+              <p class="mt-1 text-sm text-on-surface-variant">Shared playlists and parental controls.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto mt-10 max-w-7xl px-5 lg:px-10 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="glass-panel rounded-[28px] p-6">
+          <h3 class="font-display text-2xl font-semibold">Trending Artists</h3>
+          <div class="mt-6 flex gap-4 overflow-x-auto no-scrollbar">
+            <div class="w-28 text-center">
+              <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-br from-primary to-secondary"></div>
+              <p class="mt-3 font-semibold">Xenon</p>
+              <p class="text-sm text-on-surface-variant">1.2M</p>
+            </div>
+            <div class="w-28 text-center">
+              <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-br from-secondary to-tertiary"></div>
+              <p class="mt-3 font-semibold">Lyra</p>
+              <p class="text-sm text-on-surface-variant">890K</p>
+            </div>
+            <div class="w-28 text-center">
+              <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-br from-tertiary to-primary"></div>
+              <p class="mt-3 font-semibold">Echo Core</p>
+              <p class="text-sm text-on-surface-variant">2.5M</p>
+            </div>
+          </div>
+        </div>
+        <div class="glass-panel rounded-[28px] p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="font-display text-2xl font-semibold">Now playing</h3>
+            <span class="text-sm text-secondary">Live</span>
+          </div>
+          <div class="mt-6 rounded-[24px] border border-white/10 bg-gradient-to-br from-primary/20 to-secondary/20 p-5">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-sm uppercase tracking-[0.3em] text-on-surface-variant">Vapor Drift</p>
+                <h4 class="mt-2 text-2xl font-semibold">Lazer Horizon</h4>
+              </div>
+              <div class="h-16 w-16 rounded-2xl bg-gradient-to-br from-secondary to-tertiary"></div>
+            </div>
+            <div class="mt-5 h-2 rounded-full bg-white/10">
+              <div class="h-2 w-2/3 rounded-full bg-gradient-to-r from-secondary to-primary"></div>
+            </div>
+            <div class="mt-4 flex items-center justify-between text-sm text-on-surface-variant">
+              <span>1:24</span>
+              <span>3:45</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="fixed bottom-0 left-0 w-full z-50 px-4 pb-4 lg:pl-[304px]">
+      <div class="mx-auto flex max-w-5xl items-center justify-between rounded-[24px] border border-white/10 bg-surface-container/90 px-4 py-3 backdrop-blur-xl">
+        <div class="flex items-center gap-3">
+          <div class="h-12 w-12 rounded-2xl bg-gradient-to-br from-primary to-secondary"></div>
+          <div>
+            <p class="font-semibold">Cyberpunk Serenade</p>
+            <p class="text-sm text-on-surface-variant">Vector Wave</p>
+          </div>
+        </div>
+        <div class="hidden items-center gap-3 sm:flex">
+          <button class="rounded-full p-2 text-on-surface-variant hover:bg-white/5">⏮</button>
+          <button class="rounded-full bg-primary px-4 py-2 font-semibold text-on-primary">Play</button>
+          <button class="rounded-full p-2 text-on-surface-variant hover:bg-white/5">⏭</button>
+        </div>
       </div>
     </div>
+
+    <nav class="fixed bottom-0 left-0 flex w-full items-center justify-between border-t border-white/10 bg-surface-container/90 px-6 py-3 text-sm text-on-surface-variant backdrop-blur-xl lg:hidden">
+      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">home</span><span>Home</span></a>
+      <a class="flex flex-col items-center" href="#"><span class="material-symbols-outlined">search</span><span>Search</span></a>
+      <a class="flex flex-col items-center text-primary" href="#"><span class="material-symbols-outlined">subscriptions</span><span>Library</span></a>
+      <a class="flex flex-col items-center" href="/admin"><span class="material-symbols-outlined">analytics</span><span>Admin</span></a>
+    </nav>
 
     <script>
       const form = document.getElementById('login-form');
       const message = document.getElementById('message');
       const loginView = document.getElementById('login-view');
       const dashboardView = document.getElementById('dashboard-view');
-      const userName = document.getElementById('user-name');
+      const welcomeName = document.getElementById('welcome-name');
+
+      async function loadContent() {
+        try {
+          const response = await fetch('/api/content');
+          const data = await response.json();
+          document.getElementById('hero-badge').textContent = data.hero?.badge || 'Lançamento em destaque';
+          document.getElementById('hero-title').textContent = data.hero?.title || 'Descubra a próxima onda do som.';
+          document.getElementById('hero-subtitle').textContent = data.hero?.subtitle || 'Uma experiência moderna de streaming.';
+          document.getElementById('hero-primary-cta').textContent = data.hero?.primaryCta || 'Ouvir agora';
+          document.getElementById('hero-secondary-cta').textContent = data.hero?.secondaryCta || 'Abrir painel';
+          document.getElementById('hero-demo-badge').textContent = data.hero?.demoBadge || 'Login demo';
+          document.getElementById('hero-api-badge').textContent = data.hero?.apiBadge || 'Conteúdo vindo da API';
+
+          const releases = document.getElementById('releases');
+          releases.innerHTML = (data.releases || []).map((item) => `
+            <article class="w-48 shrink-0 rounded-3xl border border-white/10 bg-white/5 p-3">
+              <div class="aspect-square rounded-2xl bg-gradient-to-br from-primary/30 to-secondary/20"></div>
+              <h4 class="mt-3 font-semibold">${item.title}</h4>
+              <p class="text-sm text-on-surface-variant">${item.subtitle}</p>
+            </article>
+          `).join('');
+
+          const tracks = document.getElementById('tracks');
+          tracks.innerHTML = (data.tracks || []).map((item) => `
+            <div class="flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
+              <div>
+                <p class="font-semibold">${item.title}</p>
+                <p class="text-sm text-on-surface-variant">${item.artist}</p>
+              </div>
+              <span class="text-primary">${item.badge}</span>
+            </div>
+          `).join('');
+
+          const premiumTitle = document.getElementById('premium-title');
+          premiumTitle.textContent = data.premium?.[0]?.name || 'Assinatura premium';
+          const premiumList = document.getElementById('premium-list');
+          premiumList.innerHTML = (data.premium || []).map((item) => `
+            <div class="rounded-2xl border ${item.featured ? 'border-primary/30 bg-primary/10' : 'border-white/10 bg-white/5'} p-4">
+              <p class="font-semibold">${item.name}</p>
+              <p class="mt-1 text-sm text-on-surface-variant">${item.description}</p>
+            </div>
+          `).join('');
+
+          const artists = document.getElementById('artists');
+          artists.innerHTML = (data.artists || []).map((item) => `
+            <div class="w-28 shrink-0 text-center">
+              <div class="mx-auto h-20 w-20 rounded-full bg-gradient-to-br from-primary to-secondary"></div>
+              <p class="mt-3 font-semibold">${item.name}</p>
+              <p class="text-sm text-on-surface-variant">${item.followers}</p>
+            </div>
+          `).join('');
+
+          const player = data.player || {};
+          document.getElementById('player-badge').textContent = player.badge || 'Ao vivo';
+          document.getElementById('player-title').textContent = player.title || 'Tocando agora';
+          document.getElementById('player-artist').textContent = player.artist || 'Lazer Play';
+          document.getElementById('player-progress').textContent = player.progress || '0:00';
+          document.getElementById('player-duration').textContent = player.duration || '0:00';
+        } catch (error) {
+          document.getElementById('hero-badge').textContent = 'Lançamento em destaque • Cyberpunk Serenade';
+          document.getElementById('hero-title').textContent = 'Descubra a próxima onda do som.';
+          document.getElementById('hero-subtitle').textContent = 'Uma experiência moderna de streaming com áudio premium.';
+          document.getElementById('hero-primary-cta').textContent = 'Ouvir agora';
+          document.getElementById('hero-secondary-cta').textContent = 'Abrir painel';
+          document.getElementById('hero-demo-badge').textContent = 'Login demo: demo@lazerplay.com / 123456';
+          document.getElementById('hero-api-badge').textContent = 'Conteúdo carregado pela API';
+        }
+      }
 
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -113,9 +361,9 @@
           const data = await response.json();
 
           if (response.ok) {
-            loginView.style.display = 'none';
-            dashboardView.classList.add('visible');
-            userName.textContent = `Olá, ${data.user?.name || email}!`;
+            loginView.classList.add('hidden');
+            dashboardView.classList.remove('hidden');
+            welcomeName.textContent = `Olá, ${data.user?.name || email}!`;
             message.textContent = '';
           } else {
             message.textContent = data.error || 'Erro ao entrar.';
@@ -124,6 +372,8 @@
           message.textContent = 'Não foi possível conectar à API.';
         }
       });
+
+      loadContent();
     </script>
   </body>
 </html>

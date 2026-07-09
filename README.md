@@ -1,6 +1,37 @@
 # Lazer Play
-Plataforma de streaming de música, vídeos, podcasts e artistas independentes.
 
-API disponível em [ /api/health ](https://lazerplay-lilac.vercel.app/api/health)
+Projeto inicial de uma plataforma de streaming de mï¿½sica, vï¿½deos, podcasts e artistas independentes.
 
-Exemplo de login: `demo@lazerplay.com` / `123456`
+## Estrutura
+- Android: app em Kotlin com Jetpack Compose
+- Backend: API REST mï¿½nima em Node.js/Express
+- Web Admin: landing page e API prontas para Vercel
+
+## Como executar localmente
+
+### API local
+```powershell
+cd g:\ROBOT\BOOMPLAY
+npm install
+node api/index.js
+```
+
+### Verificar a API
+```powershell
+Invoke-WebRequest -Uri http://localhost:3000/api/health
+```
+
+### Android
+Abra a pasta android no Android Studio e execute o projeto.
+
+## Deploy na Vercel
+1. Conecte este repositï¿½rio ï¿½ Vercel.
+2. Selecione a pasta raiz do projeto.
+3. O arquivo vercel.json jï¿½ configura a API e a pï¿½gina inicial.
+4. Faï¿½a o deploy.
+
+### Endpoints disponï¿½veis
+- /api/health
+- /api/auth/login
+- /api/auth/register
+- /api/trending
